@@ -1,0 +1,9 @@
+{
+    "errorLens.statusBarIconsEnabled": true,
+    "errorLens.decorations": {
+        "errorRange": {},
+        "warningRange": {},
+        "infoRange": {},
+        "hintRange": {}
+    }
+}
