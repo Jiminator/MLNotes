@@ -1,0 +1,1 @@
+These are notes compiled for video in Machine Learning Studio
