@@ -14,7 +14,7 @@ class Solution:
 # Linear Regression
 
 ## Forward Pass
-```
+```python
 import numpy as np
 from numpy.typing import NDArray
 
@@ -44,7 +44,7 @@ class Solution:
 ```
 
 ## Backward Pass
-```
+```python
 import numpy as np
 from numpy.typing import NDArray
 
@@ -77,11 +77,4 @@ class Solution:
         return np.round(initial_weights,5)
 ```
 
-# Linear Regression
 
-$
-Y = w_1x_1+w_2x_2+w_3x_3+b\\
-O_1=w_1y_1+w_2y_2+w_3y_3+b$
-
-
-Each weight represents how important each input parameter is.
