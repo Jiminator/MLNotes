@@ -248,8 +248,6 @@ On average, how many times must a fair standard die be rolled to obtain two cons
 
 ### Answer
 
-</details>
-
 We can use Markov chains to solve this problem. This game has three game states. Let State 0 denote the start of the game, State 1 denote the state  where a 1 has been rolled, and State 2 where two ones have been rolled, which is the absorption state. Let $E_0$ be the expected number of rolls from the start to get two consecutive 1's, and $E_1$ be the expected number of rolls after having rolled one 1 (but not two consecutive 1’s). From state 0, there is a $\frac{1}{6}$ probability on entering state 1, and a $\frac{5}{6}$ probability of staying in state 0. From state 1, there is a $\frac{1}{6}$ probability to enter the absorption state, and a $\frac{5}{6}$ opportunity of returning to state 0. Thus, we can setup the following equations:
 $$E_2=0$$
 $$E_0=1+\frac{1}{6}E_1+\frac{5}{6}E_0$$
@@ -257,5 +255,25 @@ $$E_1=1+\frac{1}{6}E_2+\frac{5}{6}E_0$$
 
 We can solve this system of equations for $E_0$, which would give us $E_0 = \boxed{42}$
 
+</details>
 
 
+# Less Than Exponential
+### Question
+Suppose $X \sim \text{Exp}(\lambda_1)$ and $Y \sim \text{Exp}(\lambda_2)$ are independent. Find $\mathbb{P}[X<Y]$ when $\lambda_1=4$ and $\lambda_2=6$
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+For an exponential random variable $X \sim \text{Exp}(\lambda_1)$, the CDF is given by:
+$$F_X(x) = P(X \leq x) = 1-e^{-\lambda x}, x \geq 0$$
+
+We want to find $$P[X < Y] = \int_0^{\infty}P[X<Y|Y=y]f_\text{Y}(y)dy$$ Since $X$ and $Y$ are independent, $$P[X<Y|Y=y]=P[X<y]$$ The CDF of $X$ evaluated at $y$ is $F_x(y)$
+
+$$P(X < y) = F_x(y) = 1-e^{-\lambda_1y}$$
+
+For $Y \sim \text{Exp}(\lambda_2)$, the PDF is $$f_Y(y)=\lambda_2e^{-\lambda_2y}, y \geq 0$$
+
+$$P[X < Y] = \int_0^{\infty}(1-e^{-\lambda_1y})\lambda_2e^{-\lambda_2y}dy = 1 - \frac{\lambda_2}{\lambda_1+\lambda_2} = \frac{\lambda_1}{\lambda_1+\lambda_2} = \boxed{0.4}$$
+</details>
