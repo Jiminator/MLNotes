@@ -9,7 +9,7 @@ Kelly rolls a fair standard 6-sided die. She observes the value on the face. Aft
 ### Answer
 The expected value of 1 roll is 
 
-$$ E[\text{1 roll}] = \frac{1}{6} \cdot 1 + \frac{1}{6} \  cdot 2 + \frac{1}{6} \cdot 3 + \frac{1}{6} \cdot 4 + \frac{1}{6} \cdot 5 + \frac{1}{6} \cdot 6 = 3.5$$
+$$ E[\text{1 roll}] = \frac{1}{6} \cdot 1 + \frac{1}{6} \cdot 2 + \frac{1}{6} \cdot 3 + \frac{1}{6} \cdot 4 + \frac{1}{6} \cdot 5 + \frac{1}{6} \cdot 6 = 3.5$$
 
 Kelly's optimal playing strategy is to reroll if she rolls a value lower than the expected value of 1 roll (1,2, or 3), and to cash-in on the first roll otherwise (rolling a 4,5, or 6). This is because if she chooses to roll again, she can expect to receive a payout of 3.5 in the second roll.
 
@@ -20,70 +20,6 @@ The event tree is shown below:
 Thus, The expected value of such as strategy is shown below:
 
 $$E[\text{optimal}] = \frac{1}{6} \cdot E[\text{1 roll}] + \frac{1}{6} \cdot E[\text{1 roll}] + \frac{1}{6} \cdot E[\text{1 roll}] + \frac{1}{6} \cdot 4 + \frac{1}{6} \cdot 5 + \frac{1}{6} \cdot 6 = \boxed{4.25}$$
-
-<details>
-  <summary>Code for Graph</summary>
-
-  ### Code
-  ```python
-import matplotlib.pyplot as plt
-import networkx as nx
-import fractions
-
-# Create a directed graph
-G = nx.DiGraph()
-
-# Add nodes and edges for the first roll
-G.add_node("Start")
-for i in range(1, 7):
-    first_roll = f"{i}"
-    G.add_node(first_roll)
-    G.add_edge("Start", first_roll, weight=1/6)
-
-    # Add nodes and edges for the second roll if the first roll is less than 3.5
-    if i <= 3:
-        for j in range(1, 7):
-            second_roll = f"{i}, {j}"
-            G.add_node(second_roll)
-            G.add_edge(first_roll, second_roll, weight=1/6)
-
-# Adjust positions to space out nodes and reduce clutter
-pos = {
-    "Start": (0, 0),
-    "1": (-8, -1),
-    "2": (-4, -1),
-    "3": (0, -1),
-    "4": (4, -1),
-    "5": (8, -1),
-    "6": (12, -1)
-}
-for i in range(1, 7):
-    pos[f"1, {i}"] = (pos["1"][0] + (i-3.5) * 1.5, -2)
-    pos[f"2, {i}"] = (pos["2"][0] + (i-3.5), -2)
-    pos[f"3, {i}"] = (pos["3"][0] + (i-3.5) * 1.5, -2)
-
-# Redraw the graph with adjusted positions and fractional probabilities
-plt.figure(figsize=(14, 7))
-
-# Draw the nodes
-nx.draw_networkx_nodes(G, pos, node_size=700, node_color='lightblue')
-
-# Draw the edges with fractional labels
-edges = G.edges(data=True)
-nx.draw_networkx_edges(G, pos, edgelist=edges)
-edge_labels = {(u, v): f"{fractions.Fraction(d['weight']).limit_denominator()}" for u, v, d in edges}
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-
-# Draw the labels for nodes
-nx.draw_networkx_labels(G, pos, font_size=10, font_color='black')
-
-# Set title
-plt.title("Probability Tree")
-
-# Show plot
-plt.show()
-  ```
-</details>
 </details>
 
 # Groggy Froggy
