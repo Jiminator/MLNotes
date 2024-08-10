@@ -154,7 +154,7 @@ The inputs of the embedding layer can be one-hot encoded using the vocab size an
 ### Model Architecture
 ![alt text](image.png)
 ![alt text](image-1.png)
-Average layer averages across the time-step dimension to get a vector of dimension $\text{embed_dim}$ that every single sentence in that batch gets condensed into a vector that captures its overall semantic meaning. The linear layer predicts how positive or negative that sentence is based on its semantic meaning. The sigmoid layer normalizes this value to make the results more interpretable.
+Average layer averages across the time-step dimension to get a vector of dimension $\text{embed\_dim}$ that every single sentence in that batch gets condensed into a vector that captures its overall semantic meaning. The linear layer predicts how positive or negative that sentence is based on its semantic meaning. The sigmoid layer normalizes this value to make the results more interpretable.
 
 ### Code
 ```python
