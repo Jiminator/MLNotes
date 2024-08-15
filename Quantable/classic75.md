@@ -1,3 +1,5 @@
+These are some of my solutions for the Quantable classic 75 question list. These problems are not my own and I highly suggest you check them out.
+
 # Roll Again 1
 
 ## Question
@@ -213,3 +215,82 @@ For $Y \sim \text{Exp}(\lambda_2)$, the PDF is $$f_Y(y)=\lambda_2e^{-\lambda_2y}
 
 $$P[X < Y] = \int_0^{\infty}(1-e^{-\lambda_1y})\lambda_2e^{-\lambda_2y}dy = 1 - \frac{\lambda_2}{\lambda_1+\lambda_2} = \frac{\lambda_1}{\lambda_1+\lambda_2} = \boxed{0.4}$$
 </details>
+
+# Miami Hurricanes
+### Question
+A family has a sign with the letters MIAMI on the front. A hurricane hits Miami for the 10th time this year, so two random letters have fallen off this sign. A tourist that isn't from Miami notices this and and glues the letters back up at random. Find the probability that the sign reads MIAMI again.
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+Let $X$ denote the event where the sign reads Miami again. In this problem, we have 2 mutually exclusive cases. The first case is if the letters that fell are the same (both Ms or both Is). The second case is if the letters that fell are different. 
+
+The probability that case 1 occurs is $P(\text{Case 1}) = \frac{2}{\binom{5}{2}} = \frac{1}{5}$ because there are $\binom{5}{2}$ ways to pick 2 letters from 5 letters, and there are only 2 ways of picking the same letter. If Case 1 occurs, it is guaranteed that the sign reads MIAMI, so $P(X | \text{Case 1}) = 1$. Thus, $P(X \cap \text{Case 1}) = \frac{1}{5} \cdot 1 = \frac{1}{5}$
+
+
+The probability that case 2 occurs is $P(\text{Case 2}) = 1 - P(\text{Case 1}) = 1 - \frac{1}{5} = \frac{4}{5}$. If Case 2 occurs, there is a 50% chance that the sign will read MIAMI (the letters will be either arranged correctly or swapped) so $P(X | \text{Case 2}) = \frac{1}{2}$. Thus, $P(X \cap \text{Case 2}) = \frac{4}{5} \cdot \frac{1}{2} = \frac{2}{5}$
+
+Finally,
+$$P(X) = P(X \cap \text{Case 1}) + P(X \cap \text{Case 2}) = \frac{1}{5} + \frac{2}{5} = \boxed{\frac{3}{5}}$$
+</details>
+
+# Monty Hall 1
+### Question
+You  made it onto a game show! The host presents you with $n \geq 3$ doors. One door contains a prize, while the other $n-1$ doors are empty. The prize is uniformly random between the doors. You choose an initial door. Afterwards, the host opens a door (not the one you selected) which he knows has no prize behind it. You then are given the option to switch your door. Find the probability that you find the prize if you switch when $n=8$.
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+ Let $X$ denote the random variable where the prize is in your first pick and $C$ denote the random variable where you pick correctly if we are switch. By definition, $P(C|X) = 0$. In your first selection, you have a $P(X) = \frac{1}{n} = \frac{1}{8}$ chance of picking the correct door. Thus, there is a $P(X') = \frac{n-1}{n} = \frac{7}{8}$ chance that the prize is in any of the door other doors. Now, the game show host kindly gets rid of one of the remaining doors for us. So now, if we were to switch and the prize was not in the initial pick, we would have a $P(C|X') = \frac{1}{n-2} = \frac{1}{6}$ chance of picking the correct door. Thus $$P(C) = P(C|X)P(X) + P(C|X')P(X') = 0 + \left(\frac{1}{6}\right) \left(\frac{7}{8}\right) = \boxed{\frac{7}{48}}$$
+</details>
+
+# Disease Prevalence 1
+### Question
+The prevalence of a disease within a population is $1$%. A test for the disease is created. If the person has the disease, there is a $99$% chance they test positive. If they don't have the disease, there is still a false positive rate of $3$%. Find the probability a person actually has the disease if they test positive.
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+Let $D$ denote the random variable of a person having the disease and $T^{+}$ denote the the random variable of a positive test result.
+To solve this problem we will use Bayes Theorem, which to fit in our case would be $$P(D | T^{+}) = \frac{P(T^{+}|D) \cdot P(D)}{P(T+)} = \frac{P(T^{+}|D) \cdot P(D)}{(P(T^{+}|D) \cdot P(D)) + (P(T^{+}|D') \cdot P(D'))} $$
+$$= \frac{0.99 * 0.01}{0.99 * 0.01 + 0.03 * 0.99} = \boxed{\frac{1}{4}}$$
+</details>
+
+
+# Dart Covariance
+### Question
+Maddie is throwing darts at a very realistic dartboard that is infinitely tall and wide. Let $(0,0)$ be the exact center of the bullseye. Let $X$ and $Y$ represent the horizontal and vertical distance that Maddie's dart lands from the bullseye, respectively. This means that Maddie's shot is a random point $(X,Y) \in \mathbb{R}^2$. Assume that $X,Y \sim N(0,1)$ IID. Let $R$ be the (Euclidean) distance from the origin that the dart lands. Compute $\text{Cov}(X,R^2)$.
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+We are given that $X \sim N(0,1)$, $Y \sim N(0,1)$, and $X$ and $Y$ are independent. We can also observe that $R^2 = X^2 + Y^2$. We want to find $\text{Cov}(X,R^2) = E[XR^2] - E[X]E[R^2]$
+
+We start with $E[X] = 0$ since $X$ is a standard normal variable with mean 0. $E[R^2] = E[X^2] + E[Y^2]$. Since $X^2$ and $Y^2$ are normally distributed and $E[X^2] = \text{Var}(X) = 1$, $E[R^2] = 1 + 1 = 
+2$
+
+Now, just need to calculate $E[XR^2]$
+
+$$E[XR^2] = E[X(X^2 + Y^2)] = E[X^3] + E[XY^2]$$
+$E[X^3] = E[X]E[X^2] = 0 \times 1 = 0$. Since $X$ and $Y$ are independent, $E[XY^2]=E[X]E[Y^2] = 0$ since $E[X]=0$. Thus, $\text{Cov}(X,R^2) = E[XR^2]-E[X]E[R^2] = \boxed{0}$
+
+</details>
+
+
+# Strictly Increasing Dice
+### Question
+You have four regular six-sided dice that you roll one after the other. What is the probability that your rolls form a strictly increasing sequence?
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+The number of possible sequences is $6^4 = 1296$. Now, to count the number of strictly increasing sequences of rolling four dice, we can first observe that is equivalent to finding the number of ways to choose 4 distinct numbers from the set {$1,2,...,6$}. This is because if we randomly pick out four distinct numbers from that set, we are only interested in the one configuration where they are in strictly increasing order. Since combinations are order-invariant ({$1,2,3,4$} and {$4,3,2,1$} are not double-counted), $\binom{6}{4}$ will give us the number of sequences we are interested in. Thus, the answer is $\frac{\binom{6}{4}}{6^4} = \frac{\frac{6!}{4!2!}}{1296} = \boxed{\frac{15}{1296}}$
+
+</details>
+
+
