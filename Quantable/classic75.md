@@ -293,4 +293,23 @@ The number of possible sequences is $6^4 = 1296$. Now, to count the number of st
 
 </details>
 
+# Paperless Play 1
+### Question
+You play rock, paper, scissors with a friend, but they can't use paper. The winner receives $\$1$ from the loser. No payments happen if there is a tie. Under optimal strategy from both yourself and your friend, find your expected payout on one round of the game.
+
+<details>
+  <summary>Answer</summary>
+
+### Answer
+
+Your friend can only choose rock or scissors, so you should really only consider playing paper or rock, since playing papers will lead to either a draw or a loss, which is -EV. If we pick rock, we either draw $(+\$0)$ against rock or win $(+\$1)$ against scissors. If we pick paper, we either win $(+\$0)$ against rock or lose $(+\$1)$ against scissors. The optimal strategy for both players should lead to a mixed strategy equilibrium, where the friend will be randomizing between rock and scissors and you will be randomizing between rock and paper. Let's say the friend chooses rock with probability $p$ and scissors $1-p$. The expected payoff of rock is $0p + 1(1-p)=1-p$, and the expected payoff of scissors is $1p + (-1)(1-p) = 2p-1$.For this to be a mixed strategy equilibrium, your expected payoff for rock and paper must be equal.
+$$
+1-p = 2p-1\\
+2 = 3p \\
+p = \frac{2}{3}
+$$  
+This means that our friend's optimal strategy is to choose rock $\frac{2}{3}$ of the time and scissors $\frac{1}{3}$ of the time. Your expected payout then $1-\frac{2}{3} = \boxed{\frac{1}{3}}$
+
+</details>
+
 
